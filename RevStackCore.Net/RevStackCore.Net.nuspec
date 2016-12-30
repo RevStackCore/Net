@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>RevStackCore.Net</id>
+    <version>1.0.0</version>
+    <title>RevStack.Net</title>
+    <authors>David Sheets, Scott Francis, MIS Interactive</authors>
+    <owners>D. Sheets, S. Francis</owners>
+    <licenseUrl>https://github.com/RevStackCore/Net/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/RevStackCore/Net.git</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>C# Network protocol utility class library for .net core.</description>
+    <releaseNotes>Initial release.</releaseNotes>
+    <copyright>Copyright 2016</copyright>
+    <tags>RevStack Network protocol utility .net core</tags>
+  </metadata>
+</package>
