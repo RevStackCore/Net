@@ -1,0 +1,19 @@
+{
+  "name": "RevStackCore.Net",
+  "version": "1.0.0",
+  "description": ".net core protocol utility class library",
+  "main": "RevStackCore.Net.sln",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/RevStackCore/Net.git"
+  },
+  "author": "D. Sheets, S. Francis",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/RevStackCore/Net/issues"
+  },
+  "homepage": "https://github.com/RevStackCore/Net"
+}
