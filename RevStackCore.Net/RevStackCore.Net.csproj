@@ -16,15 +16,6 @@
   <ItemGroup>
     <Compile Include="**\*.cs" />
     <EmbeddedResource Include="**\*.resx" />
-    <Compile Remove="Http\HttpResult.cs" />
-    <Compile Remove="Utilities\EmailUtility.cs" />
-    <Compile Remove="Utilities\DomainUtility.cs" />
-    <Compile Remove="Http\Http.cs" />
-    <Compile Remove="Utilities\PathUtility.cs" />
-    <Compile Remove="Utilities\UriUtility.cs" />
-    <Compile Remove="Extensions\Http.cs" />
-    <Compile Remove="Enums\FtpNodeType.cs" />
-    <Compile Remove="Entities\BaseCredential.cs" />
   </ItemGroup>
 
   <ItemGroup>
