@@ -1,7 +1,8 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workbench ActiveDocument="RevStackCore.Net/RevStackCore.Net.csproj">
+  <MonoDevelop.Ide.Workbench ActiveDocument="README.md">
     <Files>
-      <File FileName="RevStackCore.Net/RevStackCore.Net.csproj" Line="1" Column="1" />
+      <File FileName="RevStackCore.Net/RevStackCore.Net.csproj" Line="19" Column="3" />
+      <File FileName="README.md" Line="1" Column="12" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
