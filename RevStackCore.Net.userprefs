@@ -1,7 +1,11 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workbench ActiveDocument="RevStackCore.Net/RevStackCore.Net.csproj">
+  <MonoDevelop.Ide.Workbench ActiveDocument="appveyor.yml">
     <Files>
+      <File FileName="RevStackCore.Net/Entities/FtpFileAttribute.cs" Line="1" Column="1" />
+      <File FileName="RevStackCore.Net/Entities/HttpResult.cs" Line="1" Column="1" />
+      <File FileName="RevStackCore.Net/Http/Delete.cs" Line="16" Column="4" />
       <File FileName="RevStackCore.Net/RevStackCore.Net.csproj" Line="1" Column="1" />
+      <File FileName="appveyor.yml" Line="12" Column="14" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
