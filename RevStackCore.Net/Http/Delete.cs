@@ -84,6 +84,26 @@ namespace RevStackCore.Net
 		}
 
 		/// <summary>
+		/// Delete Async with Cookies
+		/// </summary>
+		/// <returns>bool async</returns>
+		/// <param name="url">URL.</param>
+		/// <param name="cookies">Cookies Anonymous Object</param>
+        /// <param name="expDate">ExpDate</param>
+		public async static Task<bool> DeleteAsync(string url, object cookies, DateTime? expDate)
+		{
+			try
+			{
+				var response = await url.WithCookies(cookies,expDate).DeleteAsync();
+				return true;
+			}
+			catch (Exception)
+			{
+				return false;
+			}
+		}
+
+		/// <summary>
 		///  Delete Async with Header
 		/// </summary>
 		/// <returns>bool async.</returns>
@@ -94,6 +114,66 @@ namespace RevStackCore.Net
 			try
 			{
 				var response = await url.WithHeader(header.Key,header.Value).DeleteAsync();
+				return true;
+			}
+			catch (Exception)
+			{
+				return false;
+			}
+		}
+
+		/// <summary>
+		///  Delete Async with Headers
+		/// </summary>
+		/// <returns>bool async.</returns>
+		/// <param name="url">URL.</param>
+		/// <param name="headers">Headers Anonymous Object</param>
+		public async static Task<bool> DeleteAsync(string url, object headers)
+		{
+			try
+			{
+				var response = await url.WithHeaders(headers).DeleteAsync();
+				return true;
+			}
+			catch (Exception)
+			{
+				return false;
+			}
+		}
+
+		/// <summary>
+		/// Delete Async with OAuth Authentication & Headers
+		/// </summary>
+		/// <returns>bool async</returns>
+		/// <param name="url">URL.</param>
+		/// <param name="token">Token.</param>
+		/// <param name="headers">Headers Anonymous Object</param>
+		public async static Task<bool> DeleteAsync(string url, string token, object headers)
+		{
+			try
+			{
+				var response = await url.WithOAuthBearerToken(token).WithHeaders(headers).DeleteAsync();
+				return true;
+			}
+			catch (Exception)
+			{
+				return false;
+			}
+		}
+
+		/// <summary>
+		/// Delete Async with Basic Authentication & Headers
+		/// </summary>
+		/// <returns>bool async</returns>
+		/// <param name="url">URL.</param>
+		/// <param name="username">Username.</param>
+		/// <param name="password">Password.</param>
+		/// <param name="headers">Headers Anonymous Object</param>
+		public async static Task<bool> DeleteAsync(string url, string username, string password, object headers)
+		{
+			try
+			{
+				var response = await url.WithBasicAuth(username, password).WithHeaders(headers).DeleteAsync();
 				return true;
 			}
 			catch (Exception)

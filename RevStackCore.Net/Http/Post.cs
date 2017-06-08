@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Net.Http;
 using System.Net;
 using Flurl.Http;
+
 
 namespace RevStackCore.Net
 {
@@ -92,6 +94,28 @@ namespace RevStackCore.Net
 			}
 		}
 
+		/// <summary>
+		/// Async Post UrlEncoded with Cookies
+		/// </summary>
+		/// <returns>The HttpResponseMessage async</returns>
+		/// <param name="url">URL.</param>
+		/// <param name="entity">Entity.</param>
+		/// <param name="cookies">Cookies Anonymous Object</param>
+		/// <param name="expDate">Expiration Date </param>
+		/// <typeparam name="T">The 1st type parameter.</typeparam>
+		public async static Task<HttpResponseMessage> PostAsync<T>(string url, T entity, object cookies, DateTime? expDate)
+		{
+			try
+			{
+                var result = await url.WithCookies(cookies,expDate).PostUrlEncodedAsync(entity);
+				return result;
+			}
+			catch (Exception ex)
+			{
+				return errorResponse(ex);
+			}
+		}
+
 	    /// <summary>
 	    ///  Async Post UrlEncoded with Header
 	    /// </summary>
@@ -105,6 +129,72 @@ namespace RevStackCore.Net
 			try
 			{
 				var result = await url.WithHeader(header.Key,header.Value).PostUrlEncodedAsync(entity);
+				return result;
+			}
+			catch (Exception ex)
+			{
+				return errorResponse(ex);
+			}
+		}
+
+		/// <summary>
+		///  Async Post UrlEncoded with Headers
+		/// </summary>
+		/// <returns>The HttpResponseMessage async</returns>
+		/// <param name="url">URL.</param>
+		/// <param name="entity">Entity.</param>
+		/// <param name="headers">Headers Anonymous Object</param>
+		/// <typeparam name="T">The 1st type parameter.</typeparam>
+        public async static Task<HttpResponseMessage> PostAsync<T>(string url, T entity, object headers)
+		{
+			try
+			{
+                var result = await url.WithHeaders(headers).PostUrlEncodedAsync(entity);
+				return result;
+			}
+			catch (Exception ex)
+			{
+				return errorResponse(ex);
+			}
+		}
+
+		/// <summary>
+		/// Async Post UrlEncoded with OAuth Authentication and Headers
+		/// </summary>
+		/// <returns>The HttpResponseMessage async</returns>
+		/// <param name="url">URL.</param>
+		/// <param name="entity">Entity.</param>
+		/// <param name="token">Token.</param>
+		/// <param name="headers">Headers Anonymous Object</param>
+		/// <typeparam name="T">The 1st type parameter.</typeparam>
+		public async static Task<HttpResponseMessage> PostAsync<T>(string url, T entity, string token, object headers)
+		{
+			try
+			{
+				var result = await url.WithOAuthBearerToken(token).WithHeaders(headers).PostUrlEncodedAsync(entity);
+				return result;
+			}
+			catch (Exception ex)
+			{
+				return errorResponse(ex);
+			}
+		}
+
+		/// <summary>
+		/// Async Post UrlEncoded with Basic Authentication & Headers
+		/// </summary>
+		/// <returns>The HttpResponseMessage async</returns>
+		/// <param name="url">URL.</param>
+		/// <param name="entity">Entity.</param>
+		/// <param name="username">Username.</param>
+		/// <param name="password">Password.</param>
+		/// <param name="headers">Headers Anonymous Object</param>
+		/// <typeparam name="T">The 1st type parameter.</typeparam>
+		public async static Task<HttpResponseMessage> PostAsync<T>(string url, T entity, string username, string password, object headers)
+		{
+			try
+			{
+				var result = await url.WithBasicAuth(username, password).WithHeaders(headers).PostUrlEncodedAsync(entity);
 				return result;
 			}
 			catch (Exception ex)
@@ -198,6 +288,28 @@ namespace RevStackCore.Net
 		}
 
 		/// <summary>
+		/// Async Json Post with Cookies
+		/// </summary>
+		/// <returns>The entity type async</returns>
+		/// <param name="url">URL.</param>
+		/// <param name="entity">Entity.</param>
+		/// <param name="cookies">Cookies Anonymous Object</param>
+        /// <param name="expDate">ExpDate</param>
+		/// <typeparam name="T">The 1st type parameter.</typeparam>
+        public async static Task<T> PostTypedAsync<T>(string url, T entity, object cookies, DateTime? expDate)
+		{
+			try
+			{
+				var result = await url.WithCookies(cookies,expDate).PostJsonAsync(entity).ReceiveJson<T>();
+				return result;
+			}
+			catch (Exception)
+			{
+				return default(T);
+			}
+		}
+
+		/// <summary>
 		///  Async Json Post with Header
 		/// </summary>
 		/// <returns>The entity type async</returns>
@@ -217,6 +329,74 @@ namespace RevStackCore.Net
 				return default(T);
 			}
 		}
+
+		/// <summary>
+		///  Async Json Post with Headers
+		/// </summary>
+		/// <returns>The entity type async</returns>
+		/// <param name="url">URL.</param>
+		/// <param name="entity">Entity.</param>
+		/// <param name="headers">param name="headers" Anonymous Object</param>
+		/// <typeparam name="T">The 1st type parameter.</typeparam>
+		public async static Task<T> PostTypedAsync<T>(string url, T entity, object headers)
+		{
+			try
+			{
+				var result = await url.WithHeaders(headers).PostJsonAsync(entity).ReceiveJson<T>();
+				return result;
+			}
+			catch (Exception)
+			{
+				return default(T);
+			}
+		}
+
+		/// <summary>
+		/// Async Json Post with OAuth Authentication & Headers
+		/// </summary>
+		/// <returns>The entity type async</returns>
+		/// <param name="url">URL.</param>
+		/// <param name="entity">Entity.</param>
+		/// <param name="token">Token.</param>
+        /// <param name="headers">Headers Anonymous Object</param>
+		/// <typeparam name="T">The 1st type parameter.</typeparam>
+		public async static Task<T> PostTypedAsync<T>(string url, T entity, string token, object headers)
+		{
+			try
+			{
+				var result = await url.WithOAuthBearerToken(token).WithHeaders(headers).PostJsonAsync(entity).ReceiveJson<T>();
+				return result;
+			}
+			catch (Exception)
+			{
+				return default(T);
+			}
+		}
+
+		/// <summary>
+		/// Async Json Post with Basic Authentication & Headers
+		/// </summary>
+		/// <returns>The entity type async</returns>
+		/// <param name="url">URL.</param>
+		/// <param name="entity">Entity.</param>
+		/// <param name="username">Username.</param>
+		/// <param name="password">Password.</param>
+        /// <param name="headers">Headers Anonymous Object</param>
+		/// <typeparam name="T">The 1st type parameter.</typeparam>
+		public async static Task<T> PostTypedAsync<T>(string url, T entity, string username, string password,object headers)
+		{
+			try
+			{
+				var result = await url.WithBasicAuth(username, password).WithHeaders(headers).PostJsonAsync(entity).ReceiveJson<T>();
+				return result;
+			}
+			catch (Exception)
+			{
+				return default(T);
+			}
+		}
+
+
 
 		/// <summary>
 		/// Async Json Post
@@ -303,6 +483,27 @@ namespace RevStackCore.Net
 		}
 
 		/// <summary>
+		/// Async Json Post with Cookies
+		/// </summary>
+		/// <returns>ResponseType of type T async</returns>
+		/// <param name="url">URL.</param>
+		/// <param name="entity">Entity.</param>
+		/// <param name="cookies">Cookie Anonymous Object</param>
+		/// <typeparam name="T">The 1st type parameter.</typeparam>
+		public async static Task<ResponseType<T>> PostResponseTypedAsync<T>(string url, T entity, object cookies, DateTime? expDate)
+		{
+			try
+			{
+				var result = await url.WithCookies(cookies,expDate).PostJsonAsync(entity).ReceiveJson<T>();
+				return new ResponseType<T>(result, HttpStatusCode.OK);
+			}
+			catch (Exception)
+			{
+				return new ResponseType<T>(default(T), HttpStatusCode.InternalServerError);
+			}
+		}
+
+		/// <summary>
 		///  Async Json Post with Header
 		/// </summary>
 		/// <returns>ResponseType of type T async</returns>
@@ -315,6 +516,72 @@ namespace RevStackCore.Net
 			try
 			{
 				var result = await url.WithHeader(header.Key,header.Value).PostJsonAsync(entity).ReceiveJson<T>();
+				return new ResponseType<T>(result, HttpStatusCode.OK);
+			}
+			catch (Exception)
+			{
+				return new ResponseType<T>(default(T), HttpStatusCode.InternalServerError);
+			}
+		}
+
+		/// <summary>
+		///  Async Json Post with Header
+		/// </summary>
+		/// <returns>ResponseType of type T async</returns>
+		/// <param name="url">URL.</param>
+		/// <param name="entity">Entity.</param>
+		/// <param name="headers">Headers Anonymous Object</param>
+		/// <typeparam name="T">The 1st type parameter.</typeparam>
+		public async static Task<ResponseType<T>> PostResponseTypedAsync<T>(string url, T entity, object headers)
+		{
+			try
+			{
+				var result = await url.WithHeaders(headers).PostJsonAsync(entity).ReceiveJson<T>();
+				return new ResponseType<T>(result, HttpStatusCode.OK);
+			}
+			catch (Exception)
+			{
+				return new ResponseType<T>(default(T), HttpStatusCode.InternalServerError);
+			}
+		}
+
+		/// <summary>
+		/// Async Json Post with OAuth Authentication & Headers
+		/// </summary>
+		/// <returns>ResponseType of type T async</returns>
+		/// <param name="url">URL.</param>
+		/// <param name="entity">Entity.</param>
+		/// <param name="token">Token.</param>
+        /// <param name="headers">Headers Anonymous Object</param>
+		/// <typeparam name="T">The 1st type parameter.</typeparam>
+		public async static Task<ResponseType<T>> PostResponseTypedAsync<T>(string url, T entity, string token,object headers)
+		{
+			try
+			{
+				var result = await url.WithOAuthBearerToken(token).WithHeaders(headers).PostJsonAsync(entity).ReceiveJson<T>();
+				return new ResponseType<T>(result, HttpStatusCode.OK);
+			}
+			catch (Exception)
+			{
+				return new ResponseType<T>(default(T), HttpStatusCode.InternalServerError);
+			}
+		}
+
+		/// <summary>
+		/// Async Json Post with Basic Authentication & Headers
+		/// </summary>
+		/// <returns>ResponseType of type T async</returns>
+		/// <param name="url">URL.</param>
+		/// <param name="entity">Entity.</param>
+		/// <param name="username">Username.</param>
+		/// <param name="password">Password.</param>
+        /// <param name="headers">Headers Anonymous Object</param>
+		/// <typeparam name="T">The 1st type parameter.</typeparam>
+		public async static Task<ResponseType<T>> PostResponseTypedAsync<T>(string url, T entity, string username, string password,object headers)
+		{
+			try
+			{
+				var result = await url.WithBasicAuth(username, password).WithHeaders(headers).PostJsonAsync(entity).ReceiveJson<T>();
 				return new ResponseType<T>(result, HttpStatusCode.OK);
 			}
 			catch (Exception)

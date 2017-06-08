@@ -85,6 +85,26 @@ namespace RevStackCore.Net
 		}
 
 		/// <summary>
+		/// Async Get Request with Cookies
+		/// </summary>
+		/// <returns>content string async</returns>
+		/// <param name="url">URL.</param>
+		/// <param name="cookies">param name="cookies" Anonymous Object</param>
+        /// <param name="expDate">ExpDate</param>
+		public async static Task<string> GetAsync(string url, object cookies, DateTime? expDate)
+		{
+			try
+			{
+				var response = await url.WithCookies(cookies,expDate).GetStringAsync();
+				return response;
+			}
+			catch (Exception)
+			{
+				return null;
+			}
+		}
+
+		/// <summary>
 		///  Async Get Request with Header
 		/// </summary>
 		/// <returns>content string async.</returns>
@@ -95,6 +115,66 @@ namespace RevStackCore.Net
 			try
 			{
 				var response = await url.WithHeader(header.Key,header.Value).GetStringAsync();
+				return response;
+			}
+			catch (Exception)
+			{
+				return null;
+			}
+		}
+
+		/// <summary>
+		///  Async Get Request with Headers
+		/// </summary>
+		/// <returns>content string async.</returns>
+		/// <param name="url">URL.</param>
+		/// <param name="headers">Headers Anonymous Object</param>
+		public async static Task<string> GetAsync(string url, object headers)
+		{
+			try
+			{
+				var response = await url.WithHeaders(headers).GetStringAsync();
+				return response;
+			}
+			catch (Exception)
+			{
+				return null;
+			}
+		}
+
+		/// <summary>
+		/// Async Get Request with OAuth Authentication & Headers
+		/// </summary>
+		/// <returns>content string async</returns>
+		/// <param name="url">URL.</param>
+		/// <param name="token">Token.</param>
+		/// <param name="headers">Headers Anonymous Object</param>
+		public async static Task<string> GetAsync(string url, string token,object headers)
+		{
+			try
+			{
+				var response = await url.WithOAuthBearerToken(token).WithHeaders(headers).GetStringAsync();
+				return response;
+			}
+			catch (Exception)
+			{
+				return null;
+			}
+		}
+
+		/// <summary>
+		/// Async Get Request with Basic Authentication & Headers
+		/// </summary>
+		/// <returns>content string async</returns>
+		/// <param name="url">URL.</param>
+		/// <param name="username">Username.</param>
+		/// <param name="password">Password.</param>
+		/// <param name="headers">Headers Anonymous Object</param>
+		public async static Task<string> GetAsync(string url, string username, string password, object headers)
+		{
+			try
+			{
+				var response = await url.WithBasicAuth(username, password).WithHeaders(headers).GetStringAsync();
 				return response;
 			}
 			catch (Exception)
@@ -180,6 +260,26 @@ namespace RevStackCore.Net
 		}
 
 		/// <summary>
+		///  Async Get Request with Header
+		/// </summary>
+		/// <returns>The HttpResponseMessage async</returns>
+		/// <param name="url">URL.</param>
+		/// <param name="headers">Headers Anonymous Object</param>
+		public async static Task<HttpResponseMessage> GetResponseAsync(string url, object headers)
+		{
+			try
+			{
+				var response = await url.WithHeaders(headers).GetAsync();
+				return response;
+			}
+			catch (Exception ex)
+			{
+				return errorResponse(ex);
+			}
+		}
+
+
+		/// <summary>
 		/// Async Get Request with Cookie Authentication
 		/// </summary>
 		/// <returns>The HttpResponseMessage async</returns>
@@ -190,6 +290,67 @@ namespace RevStackCore.Net
 			try
 			{
 				var response = await url.WithCookie(cookie).GetAsync();
+				return response;
+			}
+			catch (Exception ex)
+			{
+				return errorResponse(ex);
+			}
+		}
+
+		/// <summary>
+		/// Async Get Request with Cookies
+		/// </summary>
+		/// <returns>The HttpResponseMessage async</returns>
+		/// <param name="url">URL.</param>
+		/// <param name="cookies">Cookies Anonymous Object</param>
+        /// <param name="expDate">ExpDate</param>
+		public async static Task<HttpResponseMessage> GetResponseAsync(string url, object cookies, DateTime? expDate)
+		{
+			try
+			{
+				var response = await url.WithCookies(cookies,expDate).GetAsync();
+				return response;
+			}
+			catch (Exception ex)
+			{
+				return errorResponse(ex);
+			}
+		}
+
+		/// <summary>
+		/// Async Get Request with OAuth Authentication & Headers
+		/// </summary>
+		/// <returns>The HttpResponseMessage async</returns>
+		/// <param name="url">URL.</param>
+		/// <param name="token">Token.</param>
+		/// <param name="headers">Headers Anonymous Object</param>
+		public async static Task<HttpResponseMessage> GetResponseAsync(string url, string token, object headers)
+		{
+			try
+			{
+				var response = await url.WithOAuthBearerToken(token).WithHeaders(headers).GetAsync();
+				return response;
+			}
+			catch (Exception ex)
+			{
+				return errorResponse(ex);
+			}
+		}
+
+		/// <summary>
+		/// Async Get Request with Basic Authentication & Headers
+		/// </summary>
+		/// <returns>The HttpResponseMessage async</returns>
+		/// <param name="url">URL.</param>
+		/// <param name="username">Username.</param>
+		/// <param name="password">Password.</param>
+		/// <param name="headers">Headers Anonymous Object</param>
+		public async static Task<HttpResponseMessage> GetResponseAsync(string url, string username, string password,object headers)
+		{
+			try
+			{
+				var response = await url.WithBasicAuth(username, password).WithHeaders(headers).GetAsync();
 				return response;
 			}
 			catch (Exception ex)
@@ -277,6 +438,26 @@ namespace RevStackCore.Net
 		}
 
 		/// <summary>
+		/// Async Json Get Request with Cookies
+		/// </summary>
+		/// <returns>The json content string async</returns>
+		/// <param name="url">URL.</param>
+		/// <param name="cookies">Cookies Anonymous Object</param>
+        /// <param name="expDate">ExpDate</param>
+		public async static Task<string> GetJsonAsync(string url, object cookies, DateTime? expDate)
+		{
+			try
+			{
+				var response = await url.WithCookies(cookies,expDate).GetJsonAsync();
+				return response;
+			}
+			catch (Exception)
+			{
+				return null;
+			}
+		}
+
+		/// <summary>
 		///  Async Json Get Request with Header
 		/// </summary>
 		/// <returns>The json content string async</returns>
@@ -294,6 +475,67 @@ namespace RevStackCore.Net
 				return null;
 			}
 		}
+
+		/// <summary>
+		///  Async Json Get Request with Headers
+		/// </summary>
+		/// <returns>The json content string async</returns>
+		/// <param name="url">URL.</param>
+		/// <param name="headers">Headers Anonymous Object</param>
+		public async static Task<string> GetJsonAsync(string url, object headers)
+		{
+			try
+			{
+				var response = await url.WithHeaders(headers).GetJsonAsync();
+				return response;
+			}
+			catch (Exception)
+			{
+				return null;
+			}
+		}
+
+		/// <summary>
+		/// Async Json Get Request with OAuth Authentication & Headers
+		/// </summary>
+		/// <returns>The json content string async</returns>
+		/// <param name="url">URL.</param>
+		/// <param name="token">Token.</param>
+		/// <param name="headers">Headers Anonymous Object</param>
+		public async static Task<string> GetJsonAsync(string url, string token, object headers)
+		{
+			try
+			{
+				var response = await url.WithOAuthBearerToken(token).WithHeaders(headers).GetJsonAsync();
+				return response;
+			}
+			catch (Exception)
+			{
+				return null;
+			}
+		}
+
+		/// <summary>
+		/// Async Json Get Request with Basic Authentication & Headers
+		/// </summary>
+		/// <returns>The json content string async</returns>
+		/// <param name="url">URL.</param>
+		/// <param name="username">Username.</param>
+		/// <param name="password">Password.</param>
+		/// <param name="headers">Headers Anonymous Object</param>
+		public async static Task<string> GetJsonAsync(string url, string username, string password, object headers)
+		{
+			try
+			{
+				var response = await url.WithBasicAuth(username, password).WithHeaders(headers).GetJsonAsync();
+				return response;
+			}
+			catch (Exception)
+			{
+				return null;
+			}
+		}
+
 
 		/// <summary>
 		/// Typed Async Json Get Request
@@ -376,6 +618,27 @@ namespace RevStackCore.Net
 		}
 
 		/// <summary>
+		/// Typed Async Json Get Request with Cookie Authentication
+		/// </summary>
+		/// <returns>The entity type async</returns>
+		/// <param name="url">URL.</param>
+		/// <param name="cookies">Cookies Anonymous Object</param>
+        /// <param name="expDate">ExpDate</param>
+		/// <typeparam name="T">The 1st type parameter.</typeparam>
+		public async static Task<T> GetTypedAsync<T>(string url, object cookies,DateTime? expDate)
+		{
+			try
+			{
+				var response = await url.WithCookies(cookies,expDate).GetJsonAsync<T>();
+				return response;
+			}
+			catch (Exception)
+			{
+				return default(T);
+			}
+		}
+
+		/// <summary>
 		///  Typed Async Json Get Request with Header
 		/// </summary>
 		/// <returns>The entity type async</returns>
@@ -394,6 +657,71 @@ namespace RevStackCore.Net
 				return default(T);
 			}
 		}
+
+		/// <summary>
+		///  Typed Async Json Get Request with Headers
+		/// </summary>
+		/// <returns>The entity type async</returns>
+		/// <param name="url">URL.</param>
+		/// <param name="headers">Headers Anonymous Object</param>
+		/// <typeparam name="T">The 1st type parameter.</typeparam>
+		public async static Task<T> GetTypedAsync<T>(string url, object headers)
+		{
+			try
+			{
+				var response = await url.WithHeaders(headers).GetJsonAsync<T>();
+				return response;
+			}
+			catch (Exception)
+			{
+				return default(T);
+			}
+		}
+
+		/// <summary>
+		/// Typed Async Json Get Request with OAuth Authentication & Headers
+		/// </summary>
+		/// <returns>The entity type async </returns>
+		/// <param name="url">URL.</param>
+		/// <param name="token">Token.</param>
+		/// <param name="headers">Headers Anonymous Object</param>
+		/// <typeparam name="T">The 1st type parameter.</typeparam>
+		public async static Task<T> GetTypedAsync<T>(string url, string token,object headers)
+		{
+			try
+			{
+				var response = await url.WithOAuthBearerToken(token).WithHeaders(headers).GetJsonAsync<T>();
+				return response;
+			}
+			catch (Exception)
+			{
+				return default(T);
+			}
+		}
+
+		/// <summary>
+		/// Typed Async Json Get Request with Basic Authentication & Headers
+		/// </summary>
+		/// <returns>The entity type async</returns>
+		/// <param name="url">URL.</param>
+		/// <param name="username">Username.</param>
+		/// <param name="password">Password.</param>
+		/// <param name="headers">Headers Anonymous Object</param>
+		/// <typeparam name="T">The 1st type parameter.</typeparam>
+		public async static Task<T> GetTypedAsync<T>(string url, string username, string password, object headers)
+		{
+			try
+			{
+				var response = await url.WithBasicAuth(username, password).WithHeaders(headers).GetJsonAsync<T>();
+				return response;
+			}
+			catch (Exception)
+			{
+				return default(T);
+			}
+		}
+
+
 
 
 		/// <summary>
@@ -477,6 +805,27 @@ namespace RevStackCore.Net
 		}
 
 		/// <summary>
+		/// Typed Async Json Get Request with Cookie Authentication & Headers
+		/// </summary>
+		/// <returns>ResponseType of type T async</returns>
+		/// <param name="url">URL.</param>
+		/// <param name="cookies">Cookies Anonymous Object</param>
+        /// <param name="expDate">ExpDate</param>
+		/// <typeparam name="T">The 1st type parameter.</typeparam>
+		public async static Task<ResponseType<T>> GetResponseTypedAsync<T>(string url, object cookies, DateTime? expDate)
+		{
+			try
+			{
+				var response = await url.WithCookies(cookies,expDate).GetJsonAsync<T>();
+				return new ResponseType<T>(response, HttpStatusCode.OK);
+			}
+			catch (Exception)
+			{
+				return new ResponseType<T>(default(T), HttpStatusCode.InternalServerError);
+			}
+		}
+
+		/// <summary>
 		///  Typed Async Json Get Request with Header
 		/// </summary>
 		/// <returns>ResponseType of type T async</returns>
@@ -488,6 +837,69 @@ namespace RevStackCore.Net
 			try
 			{
 				var response = await url.WithHeader(header.Key,header.Value).GetJsonAsync<T>();
+				return new ResponseType<T>(response, HttpStatusCode.OK);
+			}
+			catch (Exception)
+			{
+				return new ResponseType<T>(default(T), HttpStatusCode.InternalServerError);
+			}
+		}
+
+		/// <summary>
+		///  Typed Async Json Get Request with Headers
+		/// </summary>
+		/// <returns>ResponseType of type T async</returns>
+		/// <param name="url">URL.</param>
+		/// <param name="headers">Headers Anonymous Object</param>
+		/// <typeparam name="T">The 1st type parameter.</typeparam>
+		public async static Task<ResponseType<T>> GetResponseTypedAsync<T>(string url, object headers)
+		{
+			try
+			{
+				var response = await url.WithHeaders(headers).GetJsonAsync<T>();
+				return new ResponseType<T>(response, HttpStatusCode.OK);
+			}
+			catch (Exception)
+			{
+				return new ResponseType<T>(default(T), HttpStatusCode.InternalServerError);
+			}
+		}
+
+		/// <summary>
+		/// Typed Async Json Get Request with OAuth Authentication & Headers
+		/// </summary>
+		/// <returns>ResponseType of type T async</returns>
+		/// <param name="url">URL.</param>
+		/// <param name="token">Token.</param>
+		/// <param name="headers">Headers Anonymous Object</param>
+		/// <typeparam name="T">The 1st type parameter.</typeparam>
+		public async static Task<ResponseType<T>> GetResponseTypedAsync<T>(string url, string token, object headers)
+		{
+			try
+			{
+				var response = await url.WithOAuthBearerToken(token).WithHeaders(headers).GetJsonAsync<T>();
+				return new ResponseType<T>(response, HttpStatusCode.OK);
+			}
+			catch (Exception)
+			{
+				return new ResponseType<T>(default(T), HttpStatusCode.InternalServerError);
+			}
+		}
+
+		/// <summary>
+		/// Typed Async Json Get Request with Basic Authentication & Headers
+		/// </summary>
+		/// <returns>ResponseType of type T async</returns>
+		/// <param name="url">URL.</param>
+		/// <param name="username">Username.</param>
+		/// <param name="password">Password.</param>
+		/// <param name="headers">Headers Anonymous Object</param>
+		/// <typeparam name="T">The 1st type parameter.</typeparam>
+		public async static Task<ResponseType<T>> GetResponseTypedAsync<T>(string url, string username, string password, object headers)
+		{
+			try
+			{
+				var response = await url.WithBasicAuth(username, password).WithHeaders(headers).GetJsonAsync<T>();
 				return new ResponseType<T>(response, HttpStatusCode.OK);
 			}
 			catch (Exception)

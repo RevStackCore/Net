@@ -88,6 +88,26 @@ namespace RevStackCore.Net
 		}
 
 		/// <summary>
+		/// Downloads file async with Cookies
+		/// </summary>
+		/// <returns>string async.</returns>
+		/// <param name="url">URL.</param>
+		/// <param name="path">Path.</param>
+		/// <param name="cookies">Cookies Anonymous Object</param>
+		public async static Task<string> DownloadAsync(string url, string path, object cookies, DateTime? expDate)
+		{
+			try
+			{
+				var result = await url.WithCookies(cookies,expDate).DownloadFileAsync(path);
+				return result;
+			}
+			catch (Exception)
+			{
+				return null;
+			}
+		}
+
+		/// <summary>
 		/// Downloads file async with Header
 		/// </summary>
 		/// <returns>string async.</returns>
@@ -106,6 +126,72 @@ namespace RevStackCore.Net
 				return null;
 			}
 		}
+
+		/// <summary>
+		/// Downloads file async with Headers
+		/// </summary>
+		/// <returns>string async.</returns>
+		/// <param name="url">URL.</param>
+		/// <param name="path">Path.</param>
+		/// <param name="headers">Headers Anonymous Object</param>
+		public async static Task<string> DownloadAsync(string url, string path, object headers)
+		{
+			try
+			{
+				var result = await url.WithHeaders(headers).DownloadFileAsync(path);
+				return result;
+			}
+			catch (Exception)
+			{
+				return null;
+			}
+		}
+
+		/// <summary>
+		/// Downloads file async with OAuth Authentication & Headers
+		/// </summary>
+		/// <returns>string async.</returns>
+		/// <param name="url">URL.</param>
+		/// <param name="path">Path.</param>
+		/// <param name="token">Token.</param>
+		/// <param name="headers">Headers Anonymous Object</param>
+		public async static Task<string> DownloadAsync(string url, string path, string token, object headers)
+		{
+			try
+			{
+				var result = await url.WithOAuthBearerToken(token).WithHeaders(headers).DownloadFileAsync(path);
+				return result;
+			}
+			catch (Exception)
+			{
+				return null;
+			}
+		}
+
+		/// <summary>
+		/// Downloads file async with Basic Authentication & Headers
+		/// </summary>
+		/// <returns>string async.</returns>
+		/// <param name="url">URL.</param>
+		/// <param name="path">Path.</param>
+		/// <param name="username">Username.</param>
+		/// <param name="password">Password.</param>
+		/// <param name="headers">Headers Anonymous Object</param>
+		public async static Task<string> DownloadAsync(string url, string path, string username, string password, object headers)
+		{
+			try
+			{
+				var result = await url.WithBasicAuth(username, password).WithHeaders(headers).DownloadFileAsync(path);
+				return result;
+			}
+			catch (Exception)
+			{
+				return null;
+			}
+		}
+
+
+
 
 	}
 }
