@@ -1,7 +1,6 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workbench ActiveDocument="RevStackCore.Net/Http/Post.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="RevStackCore.Net/Http/Put.cs">
     <Files>
-      <File FileName="RevStackCore.Net/Http/Post.cs" Line="745" Column="37" />
       <File FileName="RevStackCore.Net/Http/Put.cs" Line="581" Column="7" />
     </Files>
   </MonoDevelop.Ide.Workbench>

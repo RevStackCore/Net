@@ -403,7 +403,7 @@ namespace RevStackCore.Net
 		/// <param name="url">URL.</param>
 		/// <param name="json">Json String</param>
 		/// <typeparam name="T">The 1st type parameter.</typeparam>
-		public async static Task<string> PuttStringAsync(string url, string json)
+		public async static Task<string> PutStringAsync(string url, string json)
 		{
 			try
 			{
