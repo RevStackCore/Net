@@ -1,6 +1,6 @@
 {
   "name": "RevStackCore.Net",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": ".net core protocol utility class library",
   "main": "RevStackCore.Net.sln",
   "scripts": {
