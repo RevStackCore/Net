@@ -363,6 +363,183 @@ namespace RevStackCore.Net
 
 
 
+
+		/// <summary>
+		/// Async Get ResponseType bytes Request
+		/// </summary>
+		/// <returns>ResponseType byte[] async</returns>
+		/// <param name="url">URL.</param>
+		public async static Task<ResponseType<byte[]>> GetBytesResponseAsync(string url)
+		{
+			try
+			{
+				var response = await url.GetBytesAsync();
+                return new ResponseType<byte[]>(response, OK);
+			}
+			catch (Exception ex)
+			{
+                return new ResponseType<byte[]>(null, InternalServerError, ex.Message);
+			}
+		}
+
+		/// <summary>
+		///  Async Get ResponseType bytes Request with Basic Authentication
+		/// </summary>
+		/// <returns>ResponseType byte[] async</returns>
+		/// <param name="url">URL.</param>
+		/// <param name="username">Username.</param>
+		/// <param name="password">Password.</param>
+		public async static Task<ResponseType<byte[]>> GetBytesResponseAsync(string url, string username, string password)
+		{
+			try
+			{
+				var response = await url.WithBasicAuth(username, password).GetBytesAsync();
+                return new ResponseType<byte[]>(response, OK);
+			}
+			catch (Exception ex)
+			{
+                return new ResponseType<byte[]>(null, InternalServerError, ex.Message);
+			}
+		}
+
+		/// <summary>
+		/// Async Get ResponseType bytes Request with OAuth Authentication
+		/// </summary>
+		/// <returns>ResponseType byte[] async</returns>
+		/// <param name="url">URL.</param>
+		/// <param name="token">Token.</param>
+		public async static Task<ResponseType<byte[]>> GetBytesResponseAsync(string url, string token)
+		{
+			try
+			{
+				var response = await url.WithOAuthBearerToken(token).GetBytesAsync();
+                return new ResponseType<byte[]>(response, OK);
+			}
+			catch (Exception ex)
+			{
+                return new ResponseType<byte[]>(null, InternalServerError, ex.Message);
+			}
+		}
+
+		/// <summary>
+		///  Async Get ResponseType bytes Request with Cookie Authentication
+		/// </summary>
+		/// <returns>ResponseType byte[] async.</returns>
+		/// <param name="url">URL.</param>
+		/// <param name="cookie">Cookie.</param>
+		public async static Task<ResponseType<byte[]>> GetBytesResponseAsync(string url, Cookie cookie)
+		{
+			try
+			{
+				var response = await url.WithCookie(cookie).GetBytesAsync();
+                return new ResponseType<byte[]>(response, OK);
+			}
+			catch (Exception ex)
+			{
+                return new ResponseType<byte[]>(null, InternalServerError, ex.Message);
+			}
+		}
+
+		/// <summary>
+		///  Async Get ResponseType bytes Request with Cookies
+		/// </summary>
+		/// <returns>ResponseType byte[] async.</returns>
+		/// <param name="url">URL.</param>
+		/// <param name="cookies">Cookies Anonymous Object</param>
+		/// <param name="expDate">ExpDate</param>
+		public async static Task<ResponseType<byte[]>> GetBytesResponseAsync(string url, object cookies, DateTime? expDate)
+		{
+			try
+			{
+				var response = await url.WithCookies(cookies, expDate).GetBytesAsync();
+                return new ResponseType<byte[]>(response, OK);
+			}
+			catch (Exception ex)
+			{
+                return new ResponseType<byte[]>(null, InternalServerError, ex.Message);
+			}
+		}
+
+		/// <summary>
+		///  Async Get ResponseType bytes Request with Header
+		/// </summary>
+		/// <returns>ResponseType byte[] async.</returns>
+		/// <param name="url">URL.</param>
+		/// <param name="header">Header.</param>
+		public async static Task<ResponseType<byte[]>> GetBytesResponseAsync(string url, RequestHeader header)
+		{
+			try
+			{
+				var response = await url.WithHeader(header.Key, header.Value).GetBytesAsync();
+                return new ResponseType<byte[]>(response, OK);
+			}
+			catch (Exception ex)
+			{
+                return new ResponseType<byte[]>(null, InternalServerError, ex.Message);
+			}
+		}
+
+		/// <summary>
+		///  Async Get ResponseType bytes Request with Headera
+		/// </summary>
+		/// <returns>ResponseType byte[] async.</returns>
+		/// <param name="url">URL.</param>
+		/// <param name="headers">Headers Anonymous Object</param>
+		public async static Task<ResponseType<byte[]>> GetBytesResponseAsync(string url, object headers)
+		{
+			try
+			{
+				var response = await url.WithHeaders(headers).GetBytesAsync();
+                return new ResponseType<byte[]>(response, OK);
+			}
+			catch (Exception ex)
+			{
+                return new ResponseType<byte[]>(null, InternalServerError, ex.Message);
+			}
+		}
+
+		/// <summary>
+		/// Async Get ResponseType bytes Request with OAuth Authentication & Headers
+		/// </summary>
+		/// <returns>ResponseType byte[] async</returns>
+		/// <param name="url">URL.</param>
+		/// <param name="token">Token.</param>
+		/// <param name="headers">Headers Anonymous Object</param>
+		public async static Task<ResponseType<byte[]>> GetBytesResponseAsync(string url, string token, object headers)
+		{
+			try
+			{
+				var response = await url.WithOAuthBearerToken(token).WithHeaders(headers).GetBytesAsync();
+                return new ResponseType<byte[]>(response, OK);
+			}
+			catch (Exception ex)
+			{
+                return new ResponseType<byte[]>(null, InternalServerError, ex.Message);
+			}
+		}
+
+		/// <summary>
+		///  Async Get ResponseType bytes Request with Basic Authentication & Headers
+		/// </summary>
+		/// <returns>ResponseType byte[] async</returns>
+		/// <param name="url">URL.</param>
+		/// <param name="username">Username.</param>
+		/// <param name="password">Password.</param>
+		/// <param name="headers">Headers Anonymous Object</param>
+		public async static Task<ResponseType<byte[]>> GetBytesResponseAsync(string url, string username, string password, object headers)
+		{
+			try
+			{
+				var response = await url.WithBasicAuth(username, password).WithHeaders(headers).GetBytesAsync();
+                return new ResponseType<byte[]>(response, OK);
+			}
+			catch (Exception ex)
+			{
+                return new ResponseType<byte[]>(null, InternalServerError, ex.Message);
+			}
+		}
+
+
 	}
 		
 }

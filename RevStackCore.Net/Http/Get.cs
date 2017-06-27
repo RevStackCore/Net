@@ -735,11 +735,11 @@ namespace RevStackCore.Net
 			try
 			{
 				var response = await url.GetJsonAsync<T>();
-				return new ResponseType<T>(response, HttpStatusCode.OK);
+				return new ResponseType<T>(response, OK);
 			}
-			catch (Exception)
+			catch (Exception ex)
 			{
-				return new ResponseType<T>(default(T), HttpStatusCode.InternalServerError);
+                return new ResponseType<T>(default(T), InternalServerError, ex.Message);
 			}
 		}
 
@@ -756,11 +756,11 @@ namespace RevStackCore.Net
 			try
 			{
 				var response = await url.WithBasicAuth(username,password).GetJsonAsync<T>();
-				return new ResponseType<T>(response, HttpStatusCode.OK);
+				return new ResponseType<T>(response, OK);
 			}
-			catch (Exception)
+			catch (Exception ex)
 			{
-				return new ResponseType<T>(default(T), HttpStatusCode.InternalServerError);
+                return new ResponseType<T>(default(T), InternalServerError, ex.Message);
 			}
 		}
 
@@ -776,11 +776,11 @@ namespace RevStackCore.Net
 			try
 			{
 				var response = await url.WithOAuthBearerToken(token).GetJsonAsync<T>();
-				return new ResponseType<T>(response, HttpStatusCode.OK);
+				return new ResponseType<T>(response, OK);
 			}
-			catch (Exception)
+			catch (Exception ex)
 			{
-				return new ResponseType<T>(default(T), HttpStatusCode.InternalServerError);
+                return new ResponseType<T>(default(T), InternalServerError, ex.Message);
 			}
 		}
 
@@ -796,11 +796,11 @@ namespace RevStackCore.Net
 			try
 			{
 				var response = await url.WithCookie(cookie).GetJsonAsync<T>();
-				return new ResponseType<T>(response, HttpStatusCode.OK);
+				return new ResponseType<T>(response, OK);
 			}
-			catch (Exception)
+			catch (Exception ex)
 			{
-				return new ResponseType<T>(default(T), HttpStatusCode.InternalServerError);
+                return new ResponseType<T>(default(T), InternalServerError, ex.Message);
 			}
 		}
 
@@ -817,11 +817,11 @@ namespace RevStackCore.Net
 			try
 			{
 				var response = await url.WithCookies(cookies,expDate).GetJsonAsync<T>();
-				return new ResponseType<T>(response, HttpStatusCode.OK);
+				return new ResponseType<T>(response, OK);
 			}
-			catch (Exception)
+			catch (Exception ex)
 			{
-				return new ResponseType<T>(default(T), HttpStatusCode.InternalServerError);
+                return new ResponseType<T>(default(T), InternalServerError, ex.Message);
 			}
 		}
 
@@ -837,11 +837,11 @@ namespace RevStackCore.Net
 			try
 			{
 				var response = await url.WithHeader(header.Key,header.Value).GetJsonAsync<T>();
-				return new ResponseType<T>(response, HttpStatusCode.OK);
+				return new ResponseType<T>(response, OK);
 			}
-			catch (Exception)
+			catch (Exception ex)
 			{
-				return new ResponseType<T>(default(T), HttpStatusCode.InternalServerError);
+                return new ResponseType<T>(default(T), InternalServerError, ex.Message);
 			}
 		}
 
@@ -857,11 +857,11 @@ namespace RevStackCore.Net
 			try
 			{
 				var response = await url.WithHeaders(headers).GetJsonAsync<T>();
-				return new ResponseType<T>(response, HttpStatusCode.OK);
+				return new ResponseType<T>(response, OK);
 			}
-			catch (Exception)
+			catch (Exception ex)
 			{
-				return new ResponseType<T>(default(T), HttpStatusCode.InternalServerError);
+                return new ResponseType<T>(default(T), InternalServerError, ex.Message);
 			}
 		}
 
@@ -878,11 +878,11 @@ namespace RevStackCore.Net
 			try
 			{
 				var response = await url.WithOAuthBearerToken(token).WithHeaders(headers).GetJsonAsync<T>();
-				return new ResponseType<T>(response, HttpStatusCode.OK);
+				return new ResponseType<T>(response, OK);
 			}
-			catch (Exception)
+			catch (Exception ex)
 			{
-				return new ResponseType<T>(default(T), HttpStatusCode.InternalServerError);
+                return new ResponseType<T>(default(T), InternalServerError, ex.Message);
 			}
 		}
 
@@ -900,11 +900,11 @@ namespace RevStackCore.Net
 			try
 			{
 				var response = await url.WithBasicAuth(username, password).WithHeaders(headers).GetJsonAsync<T>();
-				return new ResponseType<T>(response, HttpStatusCode.OK);
+				return new ResponseType<T>(response, OK);
 			}
-			catch (Exception)
+			catch (Exception ex)
 			{
-				return new ResponseType<T>(default(T), HttpStatusCode.InternalServerError);
+                return new ResponseType<T>(default(T), InternalServerError, ex.Message);
 			}
 		}
 
