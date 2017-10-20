@@ -7,9 +7,11 @@
     <Authors>S. Francis, D. Sheets</Authors>
     <Description>.net core network protocol utility class library</Description>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-    <PackageReleaseNotes>Net Standard 1.5 release</PackageReleaseNotes>
+    <PackageReleaseNotes>Fix to SMTP Authentication.</PackageReleaseNotes>
     <Copyright>Copyright 2017</Copyright>
     <PackageTags>RevStackCore Net Network Utilities</PackageTags>
+    <Version>1.0.7</Version>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <ItemGroup>
