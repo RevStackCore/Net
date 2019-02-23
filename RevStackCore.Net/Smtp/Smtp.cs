@@ -18,10 +18,11 @@ namespace RevStackCore.Net
 		public static bool SendMail(MailMessage message, MailDelivery mail)
 		{
 			var mimeMessage = message.ToMimeMessage();
-			var socketOption = mail.SecureSocketOption.ToMailKitSocketOption();
+            var socketOption = mail.SecureSocketOption.ToMailKitSocketOption();
 			using (var client = new SmtpClient())
 			{
 				client.Connect(mail.Host, mail.Port, socketOption);
+                client.Authenticate(mail.Credentials);
 				client.Send(mimeMessage);
 				client.Disconnect(true);
 			}

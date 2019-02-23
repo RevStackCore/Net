@@ -7,7 +7,6 @@
     <Authors>S. Francis, D. Sheets</Authors>
     <Description>.net core network protocol utility class library</Description>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-    <PackageReleaseNotes>Net Standard 1.5 release</PackageReleaseNotes>
     <PackageProjectUrl>https://github.com/RevStackCore/Net.git</PackageProjectUrl>
     <PackageLicenseUrl>https://github.com/RevStackCore/Net/blob/master/LICENSE</PackageLicenseUrl>
     <PackageIconUrl>https://s3.amazonaws.com/revstack/icons/revstackcore-64x64.png</PackageIconUrl>
